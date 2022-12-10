@@ -1,3 +1,5 @@
+//tutorial: https://www.youtube.com/watch?v=W0bEL93tt4k&t=128s
+
 
 import "./App.css";
 import { motion } from "framer-motion";
@@ -10,14 +12,13 @@ const [width, setWidth] = useState(0);
 const carousel = useRef()
 
 useEffect( ()=>{
-console.log(carousel.currenti)
-  
+  setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
 }, [])
 
   return (
     <div className="App">
       <motion.div ref={carousel} className="carousel">
-        <motion.div drag="x" dragConstraints={{right: 0, left: 0}} className="inner-carousel">
+        <motion.div drag="x" dragConstraints={{right: 0, left: -width}} className="inner-carousel">
           {images.map( (image, index) => {
             let id = index
             console.log(`id ${id}`)
